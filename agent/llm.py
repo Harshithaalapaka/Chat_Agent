@@ -13,11 +13,11 @@ llm = ChatGoogleGenerativeAI(
 
 def chat(user_input: str) -> str:
     prompt = f"""
-You are a polite and professional customer support assistant.
-Be clear, concise, and helpful.
+      You are a polite and professional customer support assistant.
+      Be clear, concise, and helpful.
 
-User: {user_input}
-Assistant:
+      User: {user_input}
+      Assistant:
 """
     response=llm.invoke(prompt)
     return response.content
