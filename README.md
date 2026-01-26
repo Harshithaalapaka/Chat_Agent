@@ -1,0 +1,2 @@
+A simple LLM-powered chat application built using Gemini (Google Generative AI), FastAPI, SQLite, and a basic HTML/CSS/JS frontend.
+The system stores conversation history in SQLite so the assistant can remember previous messages.
