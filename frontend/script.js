@@ -16,3 +16,7 @@ function sendMessage() {
 
     document.getElementById("message").value = "";
 }
+function exitChat() {
+    document.getElementById("chat-box").innerHTML = "";
+    alert("Chat closed");
+}
