@@ -1,4 +1,6 @@
-.myenv
+myenv
 .env
 .vscode/
 __pycache__/
+memory.db
+storage.db
