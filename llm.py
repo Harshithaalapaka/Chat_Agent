@@ -10,7 +10,7 @@ def chat_agent(user_input: str) -> str:
     save_conversation("user", user_input)
     history = get_conversation_history()
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[
             {
                 "role": "system",
