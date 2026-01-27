@@ -1,8 +1,6 @@
 import sqlite3
-
 connection = sqlite3.connect("memory.db", check_same_thread=False)
 cursor = connection.cursor()
-
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS chat_memory (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,7 +9,6 @@ CREATE TABLE IF NOT EXISTS chat_memory (
 )
 """)
 connection.commit()
-
 def save_conversation(role, message):
     cursor.execute(
         "INSERT INTO chat_memory (role, message) VALUES (?, ?)",

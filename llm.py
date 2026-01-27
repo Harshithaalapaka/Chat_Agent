@@ -1,24 +1,14 @@
-
 import os
 from groq import Groq
 from dotenv import load_dotenv
-from storage import save_conversation, get_conversation_history
-
+from memory import save_conversation, get_conversation_history
 load_dotenv()
-
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-
 client = Groq(api_key=GROQ_API_KEY)
 
 def chat_agent(user_input: str) -> str:
-    
     save_conversation("user", user_input)
-
-    
     history = get_conversation_history()
-
-    
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -40,13 +30,7 @@ User: {user_input}
         temperature=0.3
     )
 
-    
     text = response.choices[0].message.content
-
-    
     save_conversation("assistant", text)
-
     return text
-
-
 chat = chat_agent
