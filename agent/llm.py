@@ -12,17 +12,40 @@ llm = ChatGoogleGenerativeAI(
     max_op_tokens=1024
 )
 
-def chat(user_input: str) -> str:
+def chat_agent(user_input: str) -> str:
+    # Save user message
     save_conversation("user", user_input)
-    conversation_history = get_conversation_history()
-    prompt = f"""
-      You are a polite and professional customer support assistant.
-      Be clear, concise, and helpful.
 
-      User: {user_input}
-      Assistant:
+    # Get conversation history
+    history = get_conversation_history()
+
+    user_lower = user_input.lower()
+
+    # Agent decision-making
+    if user_lower in ["clear", "reset", "start over"]:
+        response = "Conversation cleared. How can I help you now?"
+
+    elif "remember" in user_lower:
+        response = "Yes, I remember our previous conversation."
+
+    elif len(user_input.split()) < 2:
+        response = "Can you please give a little more detail?"
+
+    else:
+        prompt = f"""
+You are an intelligent chat agent.
+Use previous conversation to respond correctly.
+
+Conversation history:
+{history}
+
+User: {user_input}
+Assistant:
 """
-    response=llm.invoke(prompt)
-    rply=response.content
-    save_conversation("assistant", rply)
-    return rply
+        response = llm.invoke(prompt).content
+
+    # Save assistant reply
+    save_conversation("assistant", response)
+
+    return response
+
