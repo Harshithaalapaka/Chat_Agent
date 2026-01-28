@@ -1,6 +1,6 @@
 import streamlit as st
 from llm import chat 
-st.set_page_config(page_title="Chat Agent", page_icon="🤖")
+st.set_page_config(page_title="Chat Agent")
 st.title("Chat Agent")
 if "messages" not in st.session_state:
     st.session_state.messages = []

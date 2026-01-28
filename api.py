@@ -9,10 +9,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 @app.get("/")
 def home():
-    return {"message": "Chat Agent API is running. Use POST /ask to chat."}
+    return {"message":"Chat Agent API is running. Use POST /ask to chat."}
 
 class ChatRequest(BaseModel):
     message: str

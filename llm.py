@@ -5,11 +5,11 @@ from memory import save_conversation, get_conversation_history
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=GROQ_API_KEY)
-WELCOME_MESSAGE = "Welcome to our customer support service! How can I assist you today?"
+Welcome_Message = "Welcome to our customer support service! How can I assist you today?"
 
 def chat_agent(user_input: str | None = None) -> str:
     if not user_input or not user_input.strip():
-        return WELCOME_MESSAGE
+        return Welcome_Message
     save_conversation("user", user_input)
     history = get_conversation_history()[-5:]
     response = client.chat.completions.create(
